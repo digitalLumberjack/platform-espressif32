@@ -143,7 +143,7 @@ def fetch_ffat_size(env):
     # The usable size of FAT partition is reduced with 1 sector of 4096 bytes (0x1000) to resolve wear leveling space requirement. The image file is flashed with +4096 bytes (0x1000) offset of partition address of csv table entry
     # also see https://github.com/lorol/arduino-esp32fs-plugin/blob/39d457d51490636dcd2074647ddbab1ff2f8e812/src/ESP32FS.java#L190
     env["FFAT_START"] = _parse_size(ffat['offset']) + 0x1000 
-    env["SPIFFS_START"] = env["FFAT_START"] # compatiblity so we don't have to change upload logic
+    env["FS_START"] = env["FFAT_START"] # compatiblity so we don't have to change upload logic
     env["FFAT_SIZE"] = _parse_size(ffat['size']) - 0x1000
 
 def __fetch_ffat_size(target, source, env):
